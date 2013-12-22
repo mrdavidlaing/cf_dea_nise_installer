@@ -9,20 +9,7 @@ base_release_version=`echo $release_version | cut -f 1 -d '-' | cut -f 1 -d '.'`
 cd ..
 
 cd manifests
-for version in `ls * | cut -f 1 -d '.' | sort -n -r`; do
-    if [ $version -le $base_release_version ]; then
-        selected_manifest=$version
-        break
-    fi
-done
-cd ..
-
-if [ $CF_RELEASE_USE_HEAD != "no" ]; then
-    manifest_for_next_version=`expr $base_release_version + 1`
-    if [ -f "manifests/${manifest_for_next_version}.yml" ]; then
-        selected_manifest=$manifest_for_next_version
-    fi
-fi
+selected_manifest="dea"
 
 sed "s/192.168.10.10/${NISE_IP_ADDRESS}/g" manifests/${selected_manifest}.yml > .deploy.yml
 
