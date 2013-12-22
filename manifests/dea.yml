@@ -1,0 +1,39 @@
+---
+deployment: cf
+
+# String '196.168.10.10' will be replaced with the real IP address
+
+jobs:
+- name: dea
+  template:
+  - dea_next
+  - dea_logging_agent
+
+properties:
+  domain: 192.168.10.10.xip.io
+  system_domain: 192.168.10.10.xip.io
+  system_domain_organization: system_domain
+  app_domains:
+    - 192.168.10.10.xip.io
+
+  networks:
+    apps: default
+    management: default
+
+  etcd_ips: [192.168.10.10]
+  leader_ip: 192.168.10.10
+
+  dea: &dea
+    max_memory: 4096
+    memory_mb: 4084
+    memory_overcommit_factor: 4
+    disk_mb: 4096
+    disk_overcommit_factor: 4
+    directory_server_protocol: http
+
+  dea_next: *dea
+
+  loggregator_endpoint:
+    shared_secret: XXXXXXXXXXX
+    host: 0.api.default.apps-eu-west-1.microbosh
+    port: 3456
