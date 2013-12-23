@@ -8,7 +8,6 @@ release_version=`bundle exec ./bin/nise-bosh -w -m ../cf-release`
 base_release_version=`echo $release_version | cut -f 1 -d '-' | cut -f 1 -d '.'`
 cd ..
 
-cd manifests
 selected_manifest="dea"
 
 sed "s/192.168.10.10/${NISE_IP_ADDRESS}/g" manifests/${selected_manifest}.yml > .deploy.yml

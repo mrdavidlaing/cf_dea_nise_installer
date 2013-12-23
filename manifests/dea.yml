@@ -23,6 +23,14 @@ properties:
   etcd_ips: [192.168.10.10]
   leader_ip: 192.168.10.10
 
+  nats:
+    machines: [192.168.10.10]
+    address: 192.168.10.10
+    port: 4222
+    user: nats
+    password: 008b0ead71af
+    authorization_timeout: 5
+
   dea: &dea
     max_memory: 4096
     memory_mb: 4084
@@ -34,6 +42,6 @@ properties:
   dea_next: *dea
 
   loggregator_endpoint:
-    shared_secret: XXXXXXXXXXX
-    host: 0.api.default.apps-eu-west-1.microbosh
+    shared_secret: 008b0ead71af
+    host: 0.api.cf1.apps-eu-west-1.microbosh
     port: 3456
